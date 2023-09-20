@@ -1,0 +1,36 @@
+<!-- imageoperations/templates/upload_image.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload and Display Images</title>
+</head>
+<body>
+    <h2>Upload Images</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+
+    <h3>Uploaded Images:</h3>
+    <table>
+    <tr>
+        <th>Image</th>
+        <th></th>
+        <th></th>
+        <th>Vehicle Number</th>
+    </tr>
+    {% for image in images %}
+    <tr> 
+        <td>{{ image.image }}</td>
+        <td></td>
+        <td></td>
+        <td>{{ image.vehicle_number }}</td>
+    </tr>
+    {% empty %}
+        <li>No images uploaded yet.</li>
+    {% endfor %}
+</table>
+</body>
+</html>
